@@ -13,6 +13,10 @@ services:
     container_name: accounts-api
     depends_on:
       - dislinkt-server-db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/accounts-db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=12345
     ports:
       - "8080:8080"
 
