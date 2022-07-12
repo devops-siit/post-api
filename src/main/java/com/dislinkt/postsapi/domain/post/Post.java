@@ -2,6 +2,8 @@ package com.dislinkt.postsapi.domain.post;
 
 import com.dislinkt.postsapi.domain.account.Account;
 import com.dislinkt.postsapi.domain.base.BaseEntity;
+import com.dislinkt.postsapi.domain.comment.Comment;
+import com.dislinkt.postsapi.exception.types.EntityAlreadyExistsException;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -45,4 +47,25 @@ public class Post extends BaseEntity {
             joinColumns = @JoinColumn(name = "post_id"),
             inverseJoinColumns = @JoinColumn(name = "account_id"))
     private Set<Account> dislikes;
+
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
+    private Set<Comment> comments;
+
+    public void addLike(Account account) {
+        if (likes.contains(account)) {
+            throw new EntityAlreadyExistsException("Post already liked");
+        }
+
+        likes.add(account);
+        likesCount++;
+    }
+
+    public void addDislike(Account account) {
+        if (dislikes.contains(account)) {
+            throw new EntityAlreadyExistsException("Post already disliked");
+        }
+
+        dislikes.add(account);
+        dislikesCount++;
+    }
 }
