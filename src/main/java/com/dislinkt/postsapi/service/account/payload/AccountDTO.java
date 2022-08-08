@@ -1,4 +1,4 @@
-package com.dislinkt.postsapi.web.rest.account.payload;
+package com.dislinkt.postsapi.service.account.payload;
 
 import com.dislinkt.postsapi.web.rest.base.BaseDTO;
 import lombok.Data;
