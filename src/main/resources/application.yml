@@ -18,6 +18,12 @@ spring:
     port: 5672
     username: guest
     password: guest
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: accountRegistrations
+          group: accountRegistrationPostsQueue
 
 eureka:
   client:
