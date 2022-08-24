@@ -86,4 +86,11 @@
 		</plugins>
 	</build>
 
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>quadrition</name>
+			<url>https://maven.pkg.github.com/devops-siit/posts-api</url>
+		</repository>
+	</distributionManagement>
 </project>
