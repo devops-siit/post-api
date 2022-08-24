@@ -9,7 +9,6 @@ jobs:
   artifact:
     name: Publish - GitHub Packages
     runs-on: ubuntu-18.04
-    needs: [test, sonar]
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 17
