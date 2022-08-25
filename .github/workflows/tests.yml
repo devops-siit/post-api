@@ -5,7 +5,7 @@ name: Run Tests with Maven
 
 on:
   pull_request:
-    branches: [ "develop" ]
+    branches: [ "develop", "master" ]
 
 jobs:
   build:
