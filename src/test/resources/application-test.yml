@@ -1,12 +1,16 @@
 spring:
-  profile:
-    active: dev
   datasource:
-    url: jdbc:h2:mem:test-db
+    url: jdbc:h2:mem:posts-db
     driverClassName: org.h2.Driver
     username: sa
     password: password
+    platform: h2
+  h2:
+    console:
+      enabled: true
   jpa:
-    hibernate:
-      ddl-auto: create-drop
     database-platform: org.hibernate.dialect.H2Dialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        ddl-auto: create
