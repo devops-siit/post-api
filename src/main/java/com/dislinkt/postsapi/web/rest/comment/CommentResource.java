@@ -23,8 +23,7 @@ public class CommentResource {
     }
 
     @PostMapping
-    public ResponseEntity<CommentDTO> insertComment(@RequestParam String loggedAccountUuid,
-                                                    @RequestBody NewCommentRequest commentRequest) {
-        return ReturnResponse.entityGet(commentService.insertComment(loggedAccountUuid, commentRequest));
+    public ResponseEntity<CommentDTO> insertComment(@RequestBody NewCommentRequest commentRequest) {
+        return ReturnResponse.entityGet(commentService.insertComment(commentRequest));
     }
 }

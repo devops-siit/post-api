@@ -10,6 +10,8 @@ import com.dislinkt.postsapi.web.rest.post.payload.request.NewPostRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -43,9 +45,11 @@ public class PostService {
         return postRepository.findOneByUuid(uuid).orElseThrow(() -> new EntityNotFoundException("Post not found"));
     }
 
-    public PostDTO insertPost(String loggedAccountUuid, NewPostRequest postRequest) {
+    public PostDTO insertPost(NewPostRequest postRequest) {
 
-        Account account = accountService.findOneByUuidOrElseThrowException(loggedAccountUuid);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        Account account = accountService.findOneByUsernameOrElseThrowException(user.getUsername());
 
         Post post = new Post();
 
@@ -65,9 +69,11 @@ public class PostService {
         return postDTO;
     }
 
-    public PostDTO likePost(String postUuid, String loggedAccountUuid) {
+    public PostDTO likePost(String postUuid) {
 
-        Account account = accountService.findOneByUuidOrElseThrowException(loggedAccountUuid);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        Account account = accountService.findOneByUsernameOrElseThrowException(user.getUsername());
 
         Post post = findOneByUuidOrElseThrowException(postUuid);
 
@@ -84,9 +90,11 @@ public class PostService {
         return postDTO;
     }
 
-    public PostDTO dislikePost(String postUuid, String loggedAccountUuid) {
+    public PostDTO dislikePost(String postUuid) {
 
-        Account account = accountService.findOneByUuidOrElseThrowException(loggedAccountUuid);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        Account account = accountService.findOneByUsernameOrElseThrowException(user.getUsername());
 
         Post post = findOneByUuidOrElseThrowException(postUuid);
 

@@ -23,20 +23,17 @@ public class PostResource {
     }
 
     @PostMapping
-    public ResponseEntity<PostDTO> insertPost(@RequestParam String loggedAccountUuid,
-                                              @RequestBody NewPostRequest postRequest) {
-        return ReturnResponse.entityCreated(postService.insertPost(loggedAccountUuid, postRequest));
+    public ResponseEntity<PostDTO> insertPost(@RequestBody NewPostRequest postRequest) {
+        return ReturnResponse.entityCreated(postService.insertPost(postRequest));
     }
 
     @PutMapping("/{postUuid}/like")
-    public ResponseEntity<PostDTO> likePost(@RequestParam String loggedAccountUuid,
-                                            @PathVariable String postUuid) {
-        return ReturnResponse.entityCreated(postService.likePost(postUuid, loggedAccountUuid));
+    public ResponseEntity<PostDTO> likePost(@PathVariable String postUuid) {
+        return ReturnResponse.entityCreated(postService.likePost(postUuid));
     }
 
     @PutMapping("/{postUuid}/dislike")
-    public ResponseEntity<PostDTO> dislikePost(@RequestParam String loggedAccountUuid,
-                                               @PathVariable String postUuid) {
-        return ReturnResponse.entityCreated(postService.dislikePost(postUuid, loggedAccountUuid));
+    public ResponseEntity<PostDTO> dislikePost(@PathVariable String postUuid) {
+        return ReturnResponse.entityCreated(postService.dislikePost(postUuid));
     }
 }
