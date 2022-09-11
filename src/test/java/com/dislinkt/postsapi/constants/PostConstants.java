@@ -7,9 +7,11 @@ public class PostConstants {
 	public static final String DB_POST_TEXT_1 = "job fair";
 	public static final String DB_POST_ACCOUNT_UUID_1 = "7c20fb12-40d8-4322-ba33-9c05203868e9";
 	public static final Long DB_POST_ACCOUNT_ID_1 = 1L;
+	public static final String DB_POST_ACCOUNT_USERNAME_1 = "strawberry";
 	public static final String DB_POST_UUID_1 = "7c20fb12-60d8-4322-ba33-9c05203868a9";
 
 	public static final String DB_ACCOUNT_UUID_3 = "7c20fb12-60d8-4322-ba33-9c05203868e9";
+	public static final String DB_ACCOUNT_USERNAME_3 = "spacex";
 	public static final String DB_ACCOUNT_UUID_2 = "7c20fb12-50d8-4322-ba33-9c05203868e9";
 
 
