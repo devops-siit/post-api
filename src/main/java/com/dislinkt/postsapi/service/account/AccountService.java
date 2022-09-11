@@ -49,4 +49,8 @@ public class AccountService {
     		new EntityAlreadyExistsException("Account not found"));
     
     }
+
+    public Optional<Account> findOneByUsername(String username) {
+        return accountRepository.findOneByUsername(username);
+    }
 }

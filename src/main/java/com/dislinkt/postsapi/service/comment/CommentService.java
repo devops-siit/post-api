@@ -12,6 +12,8 @@ import com.dislinkt.postsapi.web.rest.comment.payload.request.NewCommentRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -49,11 +51,13 @@ public class CommentService {
         });
     }
 
-    public CommentDTO insertComment(String loggedAccountUuid, NewCommentRequest commentRequest) {
+    public CommentDTO insertComment(NewCommentRequest commentRequest) {
 
         Post post = postService.findOneByUuidOrElseThrowException(commentRequest.getPostUuid());
 
-        Account account = accountService.findOneByUuidOrElseThrowException(loggedAccountUuid);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        Account account = accountService.findOneByUsernameOrElseThrowException(user.getUsername());
 
         Comment comment = new Comment();
 
