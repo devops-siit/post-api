@@ -32,6 +32,7 @@ public class AccountService {
 
         Account account = new Account();
 
+        account.setUuid(accountCreatedEvent.getUuid());
         account.setName(accountCreatedEvent.getName());
         account.setUsername(accountCreatedEvent.getUsername());
 
