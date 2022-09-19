@@ -17,6 +17,11 @@ public class PostResource {
     @Autowired
     private PostService postService;
 
+    @GetMapping("/post/{postUuid}")
+    public ResponseEntity<PostDTO> findByUuid(@PathVariable String postUuid) {
+        return ReturnResponse.entityGet(postService.findByUuid(postUuid));
+    }
+
     @GetMapping("/{accountUuid}")
     public ResponseEntity<Page<PostDTO>> findByAccount(@PathVariable String accountUuid, Pageable pageable) {
         return ReturnResponse.entityGet(postService.findByAccount(accountUuid, pageable));
