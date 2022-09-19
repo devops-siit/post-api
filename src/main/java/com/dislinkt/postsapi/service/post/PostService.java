@@ -23,6 +23,20 @@ public class PostService {
     @Autowired
     private AccountService accountService;
 
+    public PostDTO findByUuid(String postUuid) {
+
+        Post post = findOneByUuidOrElseThrowException(postUuid);
+
+        PostDTO dto = new PostDTO();
+
+        dto.setUuid(post.getUuid());
+        dto.setText(post.getText());
+        dto.setLikesCount(post.getLikesCount());
+        dto.setDislikesCount(post.getDislikesCount());
+
+        return dto;
+    }
+
     public Page<PostDTO> findByAccount(String accountUuid, Pageable pageable) {
 
         Account account = accountService.findOneByUuidOrElseThrowException(accountUuid);
